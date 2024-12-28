@@ -1,0 +1,310 @@
+
+
+Reza Zeraat
+Düzce, Duzce, Türkiye
+rzeraat.tur@gmail.com
+linkedin.com/in/reza-zeraat-6628781b3
+Summary
+I am a seasoned software engineer with over a decade of experience in mobile and web development, backend
+systems, and cloud infrastructure. I excel in JavaScript, TypeScript, Python, Java, C#, Ruby, and Go, and have
+extensive expertise in frameworks such as React Native, React, Angular, and Node.js.
+ 
+With 5+ years of experience in React Native and 3+ years in Node.js, I have built and maintained high-quality
+mobile applications and created robust server-side logic and APIs. My backend skills include extensive work with
+SQL and NoSQL databases like PostgreSQL, MySQL, MongoDB, and Cassandra.
+ 
+Career highlights include developing a scalable machine learning pipeline for a Fortune 500 company and
+architecting a microservices ecosystem on Kubernetes for a SaaS provider. I am adept at using Git and CI/CD
+pipelines for efficient project delivery.
+ 
+Passionate about innovation and problem-solving, I am eager to contribute to Golden Apple's fintech projects by
+creating exceptional, engaging interfaces and backend systems.
+Experience
+Full Stack Developer
+3DUniversum
+Oct 2022 - May 2024 (1 year 8 months)
+- # Developing and Integrating Technologies: Led integration of front and back-end technologies using
+JavaScript and TypeScript. Spearheaded API development with Node.js and Express.
+- Database Management: Optimized PostgreSQL and MongoDB schemas, enhancing storage
+efficiency.
+- Front-End Development: Created responsive UIs with React Native and React, using Redux and
+Context API for state management.
+- 3D Graphics and Animation: Enhanced web interactions with advanced graphics technologies.
+- # Architectural Design: Developed scalable solutions with microservices architecture.
+- DevOps and CI/CD: Improved workflows with CI/CD pipelines and AWS infrastructure.
+- Agile Project Management: Managed projects using Agile practices and modern tools.
+- ✔# Quality Assurance: Led testing with frameworks like Jest, Mocha, and Cypress.
+- # Legacy System Optimization: Upgraded legacy systems to modern tech stacks like TypeScript and
+React.
+- Innovation and Automation: Integrated AI/ML APIs and optimized resources with Docker.
+ 
+Notable Projects:
+- [DeepTalk Studio](http://deeptalkstudio.3duniversum.com)
+- [IDEA](https://idea.3duniversum.com)
+- [WeScan](https://wescan.io)
+- [Deep Therapy](https://app.deeptherapy.ai)
+- [Replay Media](https://replaymedia.3duniversum.com)
+Reza Zeraat - page 1
+
+ 
+Technologies:
+- Languages: JavaScript, TypeScript, Python, C#, Java
+- Frameworks: React Native, React, Vue.js, Angular, Node.js, Express, Django, FastAPI, Spring Boot
+- Tools: TensorFlow, Pandas, Docker, AWS, Jest, Mocha, Cypress, Redux, Context API, Tailwind,
+Babylon.js
+Lead Full Stack Developer
+TeammateMe
+Aug 2019 - Sep 2022 (3 years 2 months)
+Spearheaded Full Lifecycle Development: Led the creation of a high-traffic web platform, attracting over
+1 million monthly users and significantly boosting user engagement.
+ 
+Championed Next.js Transition: Enhanced page load speeds by 50% and increased search visibility by
+20%, elevating market position.
+ 
+Architected RESTful APIs: Utilized Node.js and PostgreSQL to improve query performance by 30%,
+streamlining data handling.
+ 
+Pioneered WebSocket Integration: Introduced real-time communication, enriching user interaction and
+engagement.
+ 
+Collaborated on UI/UX Design: Worked with design teams to develop responsive React Native
+interfaces, redefining mobile front-end standards.
+ 
+☁# Leveraged AWS Cloud Services: Employed EC2, RDS, Lambda, S3 to ensure 99.99% uptime,
+emphasizing reliability and scalability.
+ 
+Innovated with Docker: Streamlined application deployment, reducing lead times by 40% and ensuring
+consistent deliveries.
+ 
+Mentored Development Team: Cultivated a high-performing team, emphasizing excellence and best
+practices in code quality.
+ 
+Oversaw Technology Roadmap: Guided strategic decisions on architecture and tech stack, aligning with
+business goals.
+ 
+Fostered Stakeholder Relationships: Ensured alignment of technology projects with business objectives
+within an Agile framework.
+ 
+Core Skills: React Native, JavaScript, Node.js, PostgreSQL, WebSocket, AWS, Docker, Agile
+Leadership, Stakeholder Engagement.
+Full Stack Developer
+elay.io
+Sep 2016 - Aug 2019 (3 years)
+Architect of sophisticated mobile applications, ensuring seamless full stack integration for performance-
+driven solutions using React Native and Node.js.
+Reza Zeraat - page 2
+
+ 
+Lead creator of user interfaces with React Native, championing contemporary UX/UI principles for
+impeccable compatibility across platforms.
+ 
+## Innovator of scalable, maintainable back-end structures using Node.js and Express, tailored for
+future growth.
+ 
+Advanced server functionality with real-time features via WebSocket integration, enhancing user
+interaction and engagement.
+ 
+Custodian of complex PostgreSQL databases, fine-tuned for optimal transaction efficiency and
+expedited query performance.
+ 
+☁# Strategist in integrating applications with AWS, leveraging EC2, RDS, Lambda, and S3 for
+augmented scalability and operational agility.
+ 
+Orchestrator of CI/CD pipelines, ensuring fluid deployment cycles and meticulous system surveillance.
+ 
+Agile process enthusiast, ensuring team collaboration for rapid feature deployment and swift issue
+resolution.
+ 
+# Steward of code excellence, instilling robust practices and thorough code reviews to uphold system
+integrity.
+ 
+Dedicated to tech forefront, constantly revitalizing the stack to maintain competitive market stature.
+ 
+Technological Proficiency:
+ 
+Frontend: Proficiency in React Native, React, Redux, Context API, plus core mobile technologies.
+ 
+Backend: Expertise in Node.js, Express, WebSocket, with comprehensive knowledge of RESTful APIs.
+ 
+Database: Specialized in PostgreSQL and MongoDB administration.
+ 
+DevOps: Skilled with Docker, Nginx, and AWS tools including EC2, RDS, Lambda, and S3.
+ 
+Methodologies: Advocate for Agile Development, CI/CD mastery.
+Machine Learning Engineer
+Aient
+Jul 2015 - Jul 2016 (1 year 1 month)
+As an experienced Machine Learning Engineer, I have a proven track record of developing, deploying,
+and optimizing machine learning models to address complex business challenges. I specialize in
+designing end-to-end ML pipelines, integrating models with existing systems, and collaborating with
+cross-functional teams to deliver customized solutions. My expertise includes conducting data analysis,
+feature engineering, and ensuring robust model deployment and maintenance.
+ 
+Key Accomplishments:
+- Reduced customer churn by 20% through the development of a predictive model.
+Reza Zeraat - page 3
+
+- Improved recommendation system accuracy by 15% by implementing advanced algorithms.
+- Enhanced sentiment analysis using cutting-edge NLP techniques.
+- Automated anomaly detection, reducing manual monitoring efforts by 30%.
+- Streamlined the deployment process, cutting down deployment time by 40%.
+ 
+Skills:
+- Programming Languages: Python, Java, C++
+- ML Frameworks: TensorFlow, PyTorch, scikit-learn
+- Data Visualization: Matplotlib, Seaborn, Plotly
+- Cloud Platforms: AWS, GCP, Azure
+- Big Data Technologies: Hadoop, Spark, Kafka
+- Containerization: Docker, Kubernetes
+- DevOps: CI/CD pipelines
+Lead Software Architect
+Ironmusic
+Aug 2013 - Jul 2015 (2 years)
+Architected and engineered high-performance web applications with a keen focus on responsive design
+principles and seamless user interaction experiences.
+ 
+Drove the development of sophisticated front-end architectures utilizing Angular, achieving high
+efficiency in performance, modularity, and state management.
+ 
+Designed and implemented resilient backend services leveraging Node.js, emphasizing clean code
+practices and system scalability.
+ 
+Integrated cutting-edge Azure services (App Service, SQL Database, Blob Storage) to bolster
+application scalability, enhance security measures, and assure reliability.
+ 
+Executed and refined CI/CD strategies with Azure DevOps, accelerating the release cycle through
+automated testing, building, and reliable deployments.
+ 
+Fostered a culture of collaboration and innovation within cross-functional teams, ensuring alignment
+with project goals in an agile and dynamic development landscape.
+ 
+Overseen application performance monitoring and diagnostics using Azure Monitor and Application
+Insights, committing to exceptional service delivery and user satisfaction.
+ 
+Led code reviews and provided mentorship to burgeoning developers, advocating for best practices and
+continuous learning through educational workshops.
+ 
+Acted as a technical liaison for stakeholders, adeptly converting business requirements into actionable
+development plans, and ensuring the timely execution of high-quality features.
+ 
+Committed to professional growth and technological mastery, continually updating skills in line with the
+latest trends in the Angular framework, Node.js innovations, and Azure developments.
+ 
+Reza Zeraat - page 4
+
+Technical Stack: Node.js, Angular, Microsoft Azure, MongoDB
+Frontend Developer
+Maz
+Dec 2012 - Feb 2014 (1 year 3 months)
+Developed and maintained a series of dynamic web applications, focusing on responsive design, real-
+time interactions, and scalable infrastructure.
+ 
+Spearheaded the creation of engaging user interfaces using Angular, integrating real-time features
+using WebSockets for improved user interactivity and instant data updates.
+ 
+Crafted backend solutions using PHP, designing RESTful APIs, and ensuring secure and efficient data
+handling.
+ 
+Leveraged DigitalOcean to deploy, scale, and manage application infrastructure, utilizing Droplets and
+Managed Databases to ensure optimal performance and uptime.
+ 
+Collaborated closely with UX/UI designers to translate designs into fluid, interactive web interfaces with
+pixel-perfect precision.
+ 
+Established and monitored real-time communication channels and features, utilizing WebSockets to
+provide users with instantaneous feedback and updates.
+ 
+Regularly optimized application codebase for performance and security, integrating best practices and
+the latest technology updates.
+ 
+Worked in an agile environment, frequently interacting with product managers, QA professionals, and
+other team members to align on project goals and timelines.
+ 
+Mentored junior developers, leading regular code reviews, and fostering a culture of continuous learning
+and quality.
+ 
+Stayed updated on industry trends and emerging technologies in the PHP, Angular, and cloud hosting
+spaces, ensuring the applications remained at the forefront of innovation.
+ 
+PHP / Angular / Azure / HTML / CSS / JavaScript / TypeScript / React / Angular / Vue
+Back End Developer
+Freelance | Self Employed
+Jul 2011 - Jun 2012 (1 year)
+Lead the development and maintenance of web applications using PHP and Laravel, ensuring the
+delivery of high-performance solutions to meet the evolving needs of our business.
+Design sophisticated features and build RESTful APIs for client-side applications while maintaining
+clean, reusable, and scalable code.
+Spearhead the integration of front-end UI/UX designs with server-side logic, utilizing Blade templates
+alongside Vue.js to enhance interactivity and user experience.
+Architect database schemas and perform complex queries with MySQL, managing migrations
+effectively with Eloquent ORM.
+Reza Zeraat - page 5
+
+Uphold rigorous standards for code quality, utilizing PHPUnit for comprehensive testing across various
+development environments.
+Drive the containerization of applications using Docker, improving deployment processes and ensuring
+consistency across development, staging, and production environments.
+Implement CI/CD pipelines with Jenkins or GitHub Actions, streamlining the development lifecycle and
+facilitating agile release practices.
+Collaborate with cross-disciplinary teams, including product managers, designers, and other
+stakeholders, to define feature specifications and refine technical approaches.
+Actively engage in code reviews and mentoring sessions to nurture the growth of junior developers and
+foster a culture of technical excellence within the team.
+Remain abreast of industry trends and advancements in PHP and Laravel ecosystems, applying best
+practices to drive innovation and maintain competitive advantage.
+ 
+Skills: PHP, Laravel, Vue.js, MySQL, Eloquent ORM, Blade, PHPUnit, Docker, CI/CD, Agile
+Methodologies, Code Reviews, Team Mentorship, Back-End Web Development .
+Education
+D̈uzce
+ 
+Universitesi
+Bachelor of Science - BS, Computer Science
+Sep 2017 - Sep 2020
+c++
+Zero To Mastery Academy
+React Native
+Jul 2021 - Sep 2021
+React Native
+Licenses & Certifications
+JavaScript course - Sololearn
+13573579-1024
+HTML course - Sololearn
+1014-13573579
+Python for Beginners - Sololearn
+13573579-1157
+PHP course - Sololearn
+1059-13573579
+React (Basic) - HackerRank
+1FEF052F266B
+Reza Zeraat - page 6
+
+Succeeding in Web Development: Full Stack and Front End - LinkedIn
+Angular + NestJS  - Sololearn
+1092-13573579
+CSS course - Sololearn
+1023-13573579
+React + Redux - Sololearn
+1097-13573579
+C# - Sololearn
+13573579-1080
+AWS S3 Basics - Coursera
+J3HZ3DMNHPEF
+What is Data Science? - Coursera
+6QS7USSU4FTZ
+Data Science Orientation - Coursera
+Bracketology Club: Using March Madness to Learn Data Science - LinkedIn
+Data Science & Analytics Career Paths & Certifications: First Steps - LinkedIn
+Data Science Foundations: Fundamentals - LinkedIn
+Statistics Foundations: The Basics - LinkedIn
+Learning Data Governance - LinkedIn
+Agile Foundations - LinkedIn
+Agile Software Development - LinkedIn
+Foundations of AR - Meta
+QPWEHJLD7J7H
+Reza Zeraat - page 7
+
+Skills
+React.js   •   Test-Driven Development   •   React Native   •   PostgreSQL   •   MongoDB   •   React Native   •  
+Java   •   Android Development   •   iOS Development   •   Node.js
+Reza Zeraat - page 8
