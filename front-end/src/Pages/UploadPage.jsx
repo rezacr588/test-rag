@@ -57,7 +57,8 @@ function UploadPage() {
       
       const res = await fetch('/ingest', {
         method: 'POST',
-        body: formData
+        body: formData,
+        
       })
       
       if (res.ok) {

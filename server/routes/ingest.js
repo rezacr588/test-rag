@@ -40,47 +40,62 @@ const upload = multer({ limits: { fileSize: 5 * 1024 * 1024 } });
 
 router.post('/', upload.single('file'), async (req, res) => {
   try {
+    console.log('Starting ingestion process...');
     if (!req.file) {
       return res.status(400).send('No file uploaded');
     }
 
+    console.log(`Received file: ${req.file.originalname}, type: ${req.file.mimetype}`);
+    
     let pages = [];
-
+      
+    
+      
     if (req.file.mimetype === 'application/pdf') {
       const pdfData = await pdfParser(req.file.buffer);
-      pages = pdfData.text.split(/\f/) || [];
+        pages = pdfData.text.split(/\f/) || [];
+        console.log(pages);
+        
     } else if (req.file.mimetype === 'text/plain') {
       const textContent = req.file.buffer.toString('utf8');
-      pages = [textContent];
+        pages = [textContent];
+        console.log(pages);
+        
     } else {
       return res.status(400).send('Unsupported file type');
     }
 
+    console.log('Performing named entity recognition on extracted pages...');
     const processedPages = pages.map((pageText) => namedEntityRecognition(pageText));
+      
+    console.log(processedPages);
+      
+    console.log('Ensuring the Pinecone index is created or exists...');
     await createIndex();
 
-    const chunkText = (text, chunkSize = 3000) => {
-      const chunks = [];
-      for (let start = 0; start < text.length; start += chunkSize) {
-        chunks.push(text.slice(start, start + chunkSize));
-      }
-      return chunks;
+    const chunkText = (text) => {
+      // Split text into paragraphs based on double newline characters
+      return text.split(/\n\s*\n/).filter(paragraph => paragraph.trim().length > 0);
     };
-
-    const truncateText = (text, limit = 200) => {
-      return text.length <= limit ? text : text.slice(0, limit) + '...';
-    };
+    
+    console.log('Splitting text into paragraphs...');
 
     const MAX_ITEMS = 5;
 
     for (let i = 0; i < processedPages.length; i++) {
       const pageObj = processedPages[i];
       const chunkedTexts = chunkText(pageObj.text);
-
+        console.log(chunkedTexts);
+        
       for (let j = 0; j < chunkedTexts.length; j++) {
         const chunk = chunkedTexts[j];
+        console.log('Generating embeddings for each paragraph...');
         const vector = await generateEmbeddings(chunk);
-
+          console.log(vector);
+          
+          console.log(pageObj);
+          
+        
         const metadata = {
           people: pageObj.people.slice(0, MAX_ITEMS),
           places: pageObj.places.slice(0, MAX_ITEMS),
@@ -92,10 +107,11 @@ router.post('/', upload.single('file'), async (req, res) => {
           fileSize: req.file.size,
           pageIndex: i,
           chunkIndex: j,
-          text: truncateText(chunk, 200),
+          text: chunk,
           uploadTimestamp: new Date().toISOString(),
         };
 
+        console.log('Upserting vectors into Pinecone...');
         await pc.index(process.env.PINECONE_INDEX_ID).upsert([
           {
             id: `page_${Date.now()}_${i}_${j}`,
@@ -106,6 +122,7 @@ router.post('/', upload.single('file'), async (req, res) => {
       }
     }
 
+    console.log('Document ingestion completed successfully.');
     res.send('Document ingested successfully');
   } catch (error) {
     res.status(500).send('Error ingesting document');

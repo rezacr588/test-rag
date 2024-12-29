@@ -1,31 +1,57 @@
+import ssl
+import nltk
+import os
+from dotenv import load_dotenv
+import pinecone
 from gensim import corpora, models
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-import nltk
-import pinecone
-import os
-from dotenv import load_dotenv
+from pinecone import Pinecone, ServerlessSpec
+
+# SSL Configuration
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+# Download NLTK data with SSL workaround
+def ensure_nltk_data():
+    required_packages = ['punkt', 'stopwords', 'wordnet']
+    for package in required_packages:
+        try:
+            nltk.data.find(f'tokenizers/{package}')
+        except LookupError:
+            nltk.download(package)
+
+# Initialize NLTK
+ensure_nltk_data()
 
 # Load environment variables
 load_dotenv()
 
-PINECONE_API_KEY = os.getenv('PINECONE_API_KEY')
-PINECONE_ENVIRONMENT = os.getenv('PINECONE_ENVIRONMENT')
+api_key = os.getenv("PINECONE_API_KEY")
+environment = os.getenv("PINECONE_ENVIRONMENT")
+index_id = os.getenv("PINECONE_INDEX_ID")
 
-if not PINECONE_API_KEY or not PINECONE_ENVIRONMENT:
+if not api_key or not environment:
     raise ValueError("PINECONE_API_KEY and PINECONE_ENVIRONMENT must be set in the environment variables.")
 
-# Initialize Pinecone client
-pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_ENVIRONMENT)
-index = pinecone.Index('qa-index')
+# Initialize Pinecone
+pc = Pinecone(
+    api_key=os.environ.get("PINECONE_API_KEY")
+)
+
+# Initialize the index with the host
+index = pc.Index(index_id)
 
 def preprocess_text(text):
-    # Download required NLTK data
-    nltk.download('punkt')
-    nltk.download('stopwords')
-    nltk.download('wordnet')
-    
+    from nltk.tokenize import word_tokenize
+    from nltk.corpus import stopwords
+    stop_words = set(stopwords.words('english'))
+    tokens = word_tokenize(text.lower())
     # Tokenize
     tokens = word_tokenize(text.lower())
     
@@ -110,13 +136,25 @@ def update_pinecone_metadata():
             updated_metadata = chunk['metadata']
             updated_metadata['topics'] = topics
             
+            # Convert any float32 values to regular floats
+            metadata = {
+                'id': str(chunk['id']),  # Ensure ID is string
+                # Convert other float32 values to regular float
+                'topic_scores': [float(score) for score in chunk['metadata'].get('topic_scores', [])],
+                'other_metadata': float(chunk['metadata'].get('other_value', 0))
+            }
+            
+            # Filter out None values
+            metadata = {k: v for k, v in metadata.items() if v is not None}
+            
             # Update in Pinecone
             index.update(
                 id=chunk['id'],
-                metadata=updated_metadata
+                metadata=metadata
             )
         
         print(f"Updated topics for file: {file_name}")
 
 if __name__ == "__main__":
+    nltk.download('punkt_tab')
     update_pinecone_metadata()
