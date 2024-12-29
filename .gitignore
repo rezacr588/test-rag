@@ -2,6 +2,7 @@
 node_modules/
 server/node_modules/
 front-end/node_modules/
+dataset/
 
 # Build directories
 dist/

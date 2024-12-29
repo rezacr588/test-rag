@@ -8,8 +8,10 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from pinecone import Pinecone, ServerlessSpec
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import NMF
+import numpy as np
 
-# SSL Configuration
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -17,7 +19,6 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-# Download NLTK data with SSL workaround
 def ensure_nltk_data():
     required_packages = ['punkt', 'stopwords', 'wordnet']
     for package in required_packages:
@@ -67,40 +68,46 @@ def preprocess_text(text):
     
     return tokens
 
-def extract_topics(documents, num_topics=5):
-    # Preprocess all documents
-    processed_docs = [preprocess_text(doc) for doc in documents]
+def extract_topics(texts, num_topics=5):
+    """
+    Extract topics and their scores from texts
+    Returns: List of tuples (topics, scores)
+    """
+    print("Starting extract_topics function")
+    vectorizer = TfidfVectorizer(max_features=1000)
+    nmf = NMF(n_components=num_topics)
     
-    # Create dictionary and corpus
-    dictionary = corpora.Dictionary(processed_docs)
-    corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
+    # Get document-term matrix
+    dtm = vectorizer.fit_transform(texts)
+    print("Document-term matrix shape:", dtm.shape)
     
-    # Train LDA model
-    lda_model = models.LdaModel(
-        corpus,
-        num_topics=num_topics,
-        id2word=dictionary,
-        passes=15,
-        random_state=42
-    )
+    # Get topic-term and document-topic matrices
+    topic_term = nmf.fit_transform(dtm)
+    doc_topics = nmf.transform(dtm)
+    print("Topic-term", topic_term)
+    print("Topic-term matrix shape:", topic_term.shape)
+    print("Document-topic matrix shape:", doc_topics.shape)
     
-    # Extract topics for each document
-    doc_topics = []
-    for doc_bow in corpus:
-        topics = lda_model.get_document_topics(doc_bow)
-        # Sort topics by probability and get top topic terms
-        topics = sorted(topics, key=lambda x: x[1], reverse=True)
-        top_topics = [
-            {
-                'topic_id': topic_id,
-                'probability': prob,
-                'terms': [term for term, _ in lda_model.show_topic(topic_id, 5)]
-            }
-            for topic_id, prob in topics
-        ]
-        doc_topics.append(top_topics)
+    # Get feature names
+    terms = vectorizer.get_feature_names_out()
+    print("Feature names:", terms)
     
-    return doc_topics
+    results = []
+    for doc_topic in doc_topics:
+        # Get top topics and their scores
+        top_topics = [(i, float(score)) for i, score in enumerate(doc_topic)]
+        top_topics.sort(key=lambda x: x[1], reverse=True)
+        
+        # Convert to format expected by metadata
+        topics = [f"topic_{i}" for i, _ in top_topics[:3]]
+        scores = [str(score) for _, score in top_topics[:3]]  # Convert scores to strings
+        
+        results.append({
+            "topics": topics,
+            "scores": scores
+        })
+    
+    return results
 
 def update_pinecone_metadata():
     # Get all vectors from Pinecone
@@ -122,7 +129,7 @@ def update_pinecone_metadata():
                 'text': match.metadata.get('text', ''),
                 'metadata': match.metadata
             })
-    
+    print(f"Found {len(file_chunks)} files with chunks")
     # Process each file's chunks
     for file_name, chunks in file_chunks.items():
         # Extract full texts for topic modeling
@@ -130,27 +137,22 @@ def update_pinecone_metadata():
         
         # Perform topic modeling
         doc_topics = extract_topics(texts)
-        
         # Update each chunk's metadata with topics
-        for chunk, topics in zip(chunks, doc_topics):
-            updated_metadata = chunk['metadata']
-            updated_metadata['topics'] = topics
-            
-            # Convert any float32 values to regular floats
+        for chunk, topic_data in zip(chunks, doc_topics):
             metadata = {
-                'id': str(chunk['id']),  # Ensure ID is string
-                # Convert other float32 values to regular float
-                'topic_scores': [float(score) for score in chunk['metadata'].get('topic_scores', [])],
-                'other_metadata': float(chunk['metadata'].get('other_value', 0))
+                'id': str(chunk['id']),
+                'topics': topic_data['topics'],
+                'topic_scores': topic_data['scores'],
             }
+            metadata["topic_scores"] = [str(score) for score in metadata["topic_scores"]]
+            metadata['topics'] = [str(topic) for topic in metadata['topics']]
             
             # Filter out None values
             metadata = {k: v for k, v in metadata.items() if v is not None}
-            
             # Update in Pinecone
             index.update(
                 id=chunk['id'],
-                metadata=metadata
+                set_metadata=metadata
             )
         
         print(f"Updated topics for file: {file_name}")

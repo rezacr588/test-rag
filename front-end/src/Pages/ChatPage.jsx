@@ -4,6 +4,8 @@ import {
   CardContent, Paper, Fade, Skeleton 
 } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 function ChatPage() {
   const [question, setQuestion] = useState('')
@@ -87,9 +89,17 @@ function ChatPage() {
                 }}
               >
                 <CardContent>
-                  <Typography color={message.type === 'question' ? 'white' : 'text.primary'}>
-                    {message.content}
-                  </Typography>
+                  {message.type === 'answer' ? (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  ) : (
+                    <Typography color={message.type === 'question' ? 'white' : 'text.primary'}>
+                      {message.content}
+                    </Typography>
+                  )}
                   {message.chunks && (
                     <Box sx={{ mt: 1 }}>
                       {message.chunks.map((chunk, idx) => (
@@ -119,8 +129,8 @@ function ChatPage() {
         ))}
         {loading && (
           <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-            <Skeleton variant="circular" width={40} height={40} />
-            <Skeleton variant="rectangular" width={300} height={60} />
+                      <Skeleton variant="rectangular" width={300} height={60}>
+                          </Skeleton>
           </Box>
         )}
         <div ref={messagesEndRef} />
@@ -137,6 +147,7 @@ function ChatPage() {
           maxRows={4}
           variant="outlined"
           disabled={loading}
+          autoFocus
         />
         <Button 
           variant="contained" 
@@ -147,6 +158,12 @@ function ChatPage() {
           endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
         >
           Send
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={() => setMessages([])}
+        >
+          Clear Chat
         </Button>
       </Box>
     </Box>

@@ -40,8 +40,8 @@ utils/
 1. Clone the repository:
 
 ```sh
-git clone <repository-url>
-cd <repository-directory>
+git clone git@github.com:rezacr588/test-rag.git
+cd test-rag
 ```
 
 2. Install the dependencies:

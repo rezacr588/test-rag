@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
     }
 
     const queryVec = await generateEmbeddings(query);
-    const { matches } = await pc.index('qa-index').query({ vector: queryVec, topK: 3, includeMetadata: true });
+    const { matches } = await pc.index(process.env.PINECONE_INDEX_ID).query({ vector: queryVec, topK: 12, includeMetadata: true });
 
     const context = matches
       .map(match => match.metadata?.text)
@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
     }));
 
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4o',
+      model: 'chatgpt-4o-latest',
       messages: [
         { role: 'system', content: 'You are a helpful assistant that uses provided context to answer user questions accurately. You will not mention that I am providing the information from the context and act like already knows the context and giving the answer by using that' },
         { role: 'user', content: `Context:\n${context}\n\nUser Question: ${query}` }
@@ -87,7 +87,8 @@ router.post('/', async (req, res) => {
       answer: finalAnswer,
       relevantChunks
     });
-  } catch {
+  } catch (error) {
+    console.log(error);  
     res.status(500).send('Error processing query');
   }
 });

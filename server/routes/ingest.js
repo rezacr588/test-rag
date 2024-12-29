@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const router = express.Router();
-const upload = multer({ limits: { fileSize: 5 * 1024 * 1024 } });
+const upload = multer();
 
 /**
  * @swagger
@@ -108,6 +108,8 @@ router.post('/', upload.single('file'), async (req, res) => {
           pageIndex: i,
           chunkIndex: j,
           text: chunk,
+          topics: [],
+          topic_scores: [],
           uploadTimestamp: new Date().toISOString(),
         };
 
